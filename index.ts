@@ -1,1 +1,1 @@
-import './registserAdditionalData';
+import './registerAdditionalData';

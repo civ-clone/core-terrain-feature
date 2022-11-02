@@ -7,7 +7,8 @@ export interface IAvailableTerrainFeatureRegistry
   extends IConstructorRegistry<TerrainFeature> {}
 export declare class AvailableTerrainFeatureRegistry
   extends ConstructorRegistry<TerrainFeature>
-  implements IAvailableTerrainFeatureRegistry {
+  implements IAvailableTerrainFeatureRegistry
+{
   constructor();
 }
 export declare const instance: AvailableTerrainFeatureRegistry;

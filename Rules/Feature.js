@@ -9,8 +9,8 @@ class Feature extends Rule_1.default {
 }
 exports.Feature = Feature;
 exports.default = Feature;
-const feature = (TerrainType, FeatureType, chance = 0.2, terrainFeatureRegistry = TerrainFeatureRegistry_1.instance) => [
-    new Feature(new Criterion_1.default((TerrainFeatureType) => TerrainFeatureType === FeatureType), new Criterion_1.default((TerrainFeatureType, terrain) => terrain instanceof TerrainType), new Criterion_1.default(() => Math.random() <= chance), new Effect_1.default((TerrainFeatureType, terrain) => terrainFeatureRegistry.register(new TerrainFeatureType(terrain)))),
+const feature = (TerrainType, FeatureType, chance = 0.2, terrainFeatureRegistry = TerrainFeatureRegistry_1.instance, randomNumberGenerator = () => Math.random()) => [
+    new Feature(new Criterion_1.default((TerrainFeatureType) => TerrainFeatureType === FeatureType), new Criterion_1.default((TerrainFeatureType, terrain) => terrain instanceof TerrainType), new Criterion_1.default(() => randomNumberGenerator() <= chance), new Effect_1.default((TerrainFeatureType, terrain) => terrainFeatureRegistry.register(new TerrainFeatureType(terrain)))),
 ];
 exports.feature = feature;
 //# sourceMappingURL=Feature.js.map

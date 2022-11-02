@@ -9,12 +9,14 @@ export interface IAvailableTerrainFeatureRegistry
 
 export class AvailableTerrainFeatureRegistry
   extends ConstructorRegistry<TerrainFeature>
-  implements IAvailableTerrainFeatureRegistry {
+  implements IAvailableTerrainFeatureRegistry
+{
   constructor() {
     super(TerrainFeature);
   }
 }
 
-export const instance: AvailableTerrainFeatureRegistry = new AvailableTerrainFeatureRegistry();
+export const instance: AvailableTerrainFeatureRegistry =
+  new AvailableTerrainFeatureRegistry();
 
 export default AvailableTerrainFeatureRegistry;

@@ -10,7 +10,8 @@ export interface ITerrainFeatureRegistry
 }
 export declare class TerrainFeatureRegistry
   extends EntityRegistry<TerrainFeature>
-  implements ITerrainFeatureRegistry {
+  implements ITerrainFeatureRegistry
+{
   constructor();
   getByTerrain(terrain: Terrain): TerrainFeature[];
 }

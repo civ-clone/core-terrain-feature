@@ -12,7 +12,8 @@ export interface ITerrainFeatureRegistry
 
 export class TerrainFeatureRegistry
   extends EntityRegistry<TerrainFeature>
-  implements ITerrainFeatureRegistry {
+  implements ITerrainFeatureRegistry
+{
   constructor() {
     super(TerrainFeature);
   }

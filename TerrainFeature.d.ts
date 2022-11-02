@@ -6,7 +6,8 @@ export interface ITerrainFeature {
 }
 export declare class TerrainFeature
   extends DataObject
-  implements ITerrainFeature {
+  implements ITerrainFeature
+{
   #private;
   constructor(terrain: Terrain);
   clone(terrain?: Terrain): TerrainFeature;

@@ -5,7 +5,6 @@ import {
 import Criterion from '@civ-clone/core-rule/Criterion';
 import Effect from '@civ-clone/core-rule/Effect';
 import { IConstructor } from '@civ-clone/core-registry/Registry';
-import { IRuleRegistry } from '@civ-clone/core-rule/RuleRegistry';
 import Rule from '@civ-clone/core-rule/Rule';
 import Terrain from '@civ-clone/core-terrain/Terrain';
 import TerrainFeature from '../TerrainFeature';
@@ -17,23 +16,18 @@ export class Feature extends Rule<
 
 export default Feature;
 
-export interface IFeatureRegistry
-  extends IRuleRegistry<
-    Feature,
-    [IConstructor<TerrainFeature>, Terrain],
-    void
-  > {}
-
 export const feature: (
   TerrainType: IConstructor<Terrain>,
   FeatureType: IConstructor<TerrainFeature>,
   chance?: number,
-  terrainFeatureRegistry?: TerrainFeatureRegistry
+  terrainFeatureRegistry?: TerrainFeatureRegistry,
+  randomNumberGenerator?: () => number
 ) => Feature[] = (
   TerrainType: IConstructor<Terrain>,
   FeatureType: IConstructor<TerrainFeature>,
   chance: number = 0.2,
-  terrainFeatureRegistry: TerrainFeatureRegistry = terrainFeatureRegistryInstance
+  terrainFeatureRegistry: TerrainFeatureRegistry = terrainFeatureRegistryInstance,
+  randomNumberGenerator: () => number = () => Math.random()
 ): Feature[] => [
   new Feature(
     new Criterion(
@@ -46,7 +40,7 @@ export const feature: (
         terrain: Terrain
       ): boolean => terrain instanceof TerrainType
     ),
-    new Criterion((): boolean => Math.random() <= chance),
+    new Criterion((): boolean => randomNumberGenerator() <= chance),
     new Effect(
       (
         TerrainFeatureType: IConstructor<TerrainFeature>,

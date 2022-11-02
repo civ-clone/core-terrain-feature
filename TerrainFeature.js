@@ -1,35 +1,33 @@
 "use strict";
-var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _terrain;
+var _TerrainFeature_terrain;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TerrainFeature = void 0;
 const DataObject_1 = require("@civ-clone/core-data-object/DataObject");
 class TerrainFeature extends DataObject_1.default {
     constructor(terrain) {
         super();
-        _terrain.set(this, void 0);
-        __classPrivateFieldSet(this, _terrain, terrain);
+        _TerrainFeature_terrain.set(this, void 0);
+        __classPrivateFieldSet(this, _TerrainFeature_terrain, terrain, "f");
     }
     clone(terrain = this.terrain()) {
         return new this.constructor(terrain);
     }
     terrain() {
-        return __classPrivateFieldGet(this, _terrain);
+        return __classPrivateFieldGet(this, _TerrainFeature_terrain, "f");
     }
 }
 exports.TerrainFeature = TerrainFeature;
-_terrain = new WeakMap();
+_TerrainFeature_terrain = new WeakMap();
 exports.default = TerrainFeature;
 //# sourceMappingURL=TerrainFeature.js.map
