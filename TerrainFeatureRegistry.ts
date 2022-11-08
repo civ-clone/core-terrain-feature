@@ -10,6 +10,8 @@ export interface ITerrainFeatureRegistry
   getByTerrain(terrain: Terrain): TerrainFeature[];
 }
 
+const featureCache = new Map<Terrain, TerrainFeature[]>();
+
 export class TerrainFeatureRegistry
   extends EntityRegistry<TerrainFeature>
   implements ITerrainFeatureRegistry
@@ -19,7 +21,11 @@ export class TerrainFeatureRegistry
   }
 
   getByTerrain(terrain: Terrain): TerrainFeature[] {
-    return this.getBy('terrain', terrain);
+    if (!featureCache.has(terrain)) {
+      featureCache.set(terrain, this.getBy('terrain', terrain));
+    }
+
+    return featureCache.get(terrain)!;
   }
 }
 
