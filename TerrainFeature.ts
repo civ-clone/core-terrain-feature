@@ -7,12 +7,12 @@ export interface ITerrainFeature {
 }
 
 export class TerrainFeature extends DataObject implements ITerrainFeature {
-  #terrain: Terrain;
+  private _terrain: Terrain;
 
   constructor(terrain: Terrain) {
     super();
 
-    this.#terrain = terrain;
+    this._terrain = terrain;
   }
 
   clone(terrain: Terrain = this.terrain()): TerrainFeature {
@@ -20,7 +20,7 @@ export class TerrainFeature extends DataObject implements ITerrainFeature {
   }
 
   terrain(): Terrain {
-    return this.#terrain;
+    return this._terrain;
   }
 }
 

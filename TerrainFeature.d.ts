@@ -8,7 +8,7 @@ export declare class TerrainFeature
   extends DataObject
   implements ITerrainFeature
 {
-  #private;
+  private _terrain;
   constructor(terrain: Terrain);
   clone(terrain?: Terrain): TerrainFeature;
   terrain(): Terrain;
