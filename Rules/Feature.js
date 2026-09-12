@@ -5,11 +5,12 @@ const TerrainFeatureRegistry_1 = require("../TerrainFeatureRegistry");
 const Criterion_1 = require("@civ-clone/core-rule/Criterion");
 const Effect_1 = require("@civ-clone/core-rule/Effect");
 const Rule_1 = require("@civ-clone/core-rule/Rule");
+const core_random_1 = require("@civ-clone/core-random");
 class Feature extends Rule_1.default {
 }
 exports.Feature = Feature;
 exports.default = Feature;
-const feature = (TerrainType, FeatureType, chance = 0.2, terrainFeatureRegistry = TerrainFeatureRegistry_1.instance, randomNumberGenerator = () => Math.random()) => [
+const feature = (TerrainType, FeatureType, chance = 0.2, terrainFeatureRegistry = TerrainFeatureRegistry_1.instance, randomNumberGenerator = core_random_1.instance) => [
     new Feature(new Criterion_1.default((TerrainFeatureType) => TerrainFeatureType === FeatureType), new Criterion_1.default((TerrainFeatureType, terrain) => terrain instanceof TerrainType), new Criterion_1.default(() => randomNumberGenerator() <= chance), new Effect_1.default((TerrainFeatureType, terrain) => terrainFeatureRegistry.register(new TerrainFeatureType(terrain)))),
 ];
 exports.feature = feature;

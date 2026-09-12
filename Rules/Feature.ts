@@ -8,6 +8,7 @@ import { IConstructor } from '@civ-clone/core-registry/Registry';
 import Rule from '@civ-clone/core-rule/Rule';
 import Terrain from '@civ-clone/core-terrain/Terrain';
 import TerrainFeature from '../TerrainFeature';
+import { instance as rngInstance } from '@civ-clone/core-random';
 
 export class Feature extends Rule<
   [IConstructor<TerrainFeature>, Terrain],
@@ -27,7 +28,7 @@ export const feature: (
   FeatureType: IConstructor<TerrainFeature>,
   chance: number = 0.2,
   terrainFeatureRegistry: TerrainFeatureRegistry = terrainFeatureRegistryInstance,
-  randomNumberGenerator: () => number = () => Math.random()
+  randomNumberGenerator: () => number = rngInstance
 ): Feature[] => [
   new Feature(
     new Criterion(
