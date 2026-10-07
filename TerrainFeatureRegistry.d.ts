@@ -12,6 +12,7 @@ export declare class TerrainFeatureRegistry
   extends EntityRegistry<TerrainFeature>
   implements ITerrainFeatureRegistry
 {
+  private _byTerrain;
   constructor();
   getByTerrain(terrain: Terrain): TerrainFeature[];
 }
